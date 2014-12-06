@@ -19,7 +19,7 @@
 	<br>
 
 	<div class="col-lg-6">
-    <div class="input-group" >
+    <div class="input-group">
       <input type="text"  class="form-control" placeholder="Enter a phone number" id="phone_num">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" id="submit_num">Go!</button>
@@ -29,8 +29,10 @@
 
     <br>
     <br>
-	<p> Feeling lucky? </p>
-	<button type="button" class="btn btn-success btn-small btn-block">I'm feeling lucky!</button>
+    <center>
+	<p> Feeling lucky? </p></center>
+	<button type="button" id="lucky" class="btn btn-success btn-small btn-block">I'm feeling lucky!</button>
+	<!-- </center> -->
 
 
 
@@ -56,6 +58,12 @@
 				$.get("http://danielvd.pythonanywhere.com/message/" + num, function (data, status){
 				});
 
+			});
+
+			$("#lucky").on("click", function(){
+				$.get("http://danielvd.pythonanywhere.com/fact", function(data, status){
+					alert(data);
+				});
 			});
 		});
 
