@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dog Facts</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+	<body>
+		<center>
+			<h1> Welcome to Dog Facts! </h1>
+		</center>
+	</body>
+
+	<br>
+
+	<div class="col-lg-6">
+    <div class="input-group" >
+      <input type="text"  class="form-control" placeholder="Enter a phone number" id="phone_num">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" id="submit_num">Go!</button>
+      </span>
+    </div>
+	</center>
+
+    <br>
+    <br>
+	<p> Feeling lucky? </p>
+	<button type="button" class="btn btn-success btn-small btn-block">I'm feeling lucky!</button>
+
+
+
+
+
+	<!-- Bootstrap core Javascript
+	============================================ -->
+	<!-- Placed at the end to load pages faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+
+		var isBeingSent = false;
+
+		$(document).ready(function(){
+			// We stop executing the event if it's already been clicked on before 
+			if (isBeingSent == true)
+				return false;
+			$("#submit_num").on("click", function(){
+				// The phone number we need to POST 
+				var num = document.getElementById("phone_num").value;
+				var return_value = $.post(
+					"http://danielvd.pythonanywhere.com/message",
+					{
+						phoneNum: num
+					}, 
+
+					function(data, status){
+						alert("it worked");
+					});
+
+			});
+		});
+
+	</script>
+
+</html>
