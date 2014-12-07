@@ -55,7 +55,22 @@
 			$("#submit_num").on("click", function(){
 				// The phone number we need to POST 
 				var num = document.getElementById("phone_num").value;
-				$.get("http://danielvd.pythonanywhere.com/message/" + num, function (data, status){
+                $.ajax({
+                    url: "http://danielvd.pythonanywhere.com/message",
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        phoneNum: num
+                    }),
+                    success: function (data, status){
+                        console.log(data);
+                    },
+                    error: function(xhRequest, ErrorText, thrownError){
+                        alert("failed to process correctly");
+                        console.log(JSON.stringify(xhRequest) + "\n");
+                        console.log(ErrorText + "\n");
+                        console.log(thrownError + "\n");
+                    }
 				});
 
 			});
