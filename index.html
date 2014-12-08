@@ -23,14 +23,16 @@
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" id="submit_num">Go!</button>
       </span>
-    </div>
-
+  </div>
+    <br>
+    <p id="confirmation"> </p>
     <br>
     <br>
     <center>
         <h1> Feeling lucky? </h1></center>
 	<button type="button" id="lucky" class="btn btn-success btn-small btn-block">I'm feeling lucky!</button>
-	
+    <br>
+    <p id="lucky_paragraph"></p>    
 
 
 
@@ -64,15 +66,15 @@
                         console.log(data);
                         console.log(data.success);
                         if (data.success == true){
-                            alert("Congratulations, your dog fact has been sent.");
+                        document.getElementById("confirmation").innerHTML = "<center>Congratulations, you've sent your dog fact.</center>";
                         }
                         
                         else{
-                            alert("Sorry, there was an error sending out your dog fact.");
+                        document.getElementById("confirmation").innerHTML = "<center>Sorry, your dog fact didn't send out.</center>";
                         }
                     },
                     error: function(xhRequest, ErrorText, thrownError){
-                        alert("Chill out dude, you're sending out too many texts.");
+                    document.getElementById("confirmation").innerHTML = "<center>Chill out dude, you're sending out too many texts.</center>";
                         console.log(JSON.stringify(xhRequest) + "\n");
                         console.log(ErrorText + "\n");
                         console.log(thrownError + "\n");
@@ -83,7 +85,7 @@
 
 			$("#lucky").on("click", function(){
 				$.get("http://danielvd.pythonanywhere.com/fact", function(data, status){
-					alert(data);
+                    document.getElementById("lucky_paragraph").innerHTML = "<center>" + data + "</center>";
 				});
 			});
 		});
